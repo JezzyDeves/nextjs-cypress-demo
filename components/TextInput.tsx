@@ -3,7 +3,7 @@
 import React from "react";
 
 type Props = {
-  name?: string;
+  name: string;
   id?: string;
   placeholder?: string;
   error?: string;
@@ -29,7 +29,10 @@ export default function TextInput({
           placeholder={placeholder}
         />
         {error ? (
-          <span className="text-red-500 font-semibold break-words">
+          <span
+            id={`${name}-error`}
+            className="text-red-500 font-semibold break-words"
+          >
             {error}
           </span>
         ) : null}

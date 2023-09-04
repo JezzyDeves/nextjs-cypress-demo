@@ -6,7 +6,9 @@ import { z } from "zod";
 
 type Props = {};
 
-const validationSchema = z.object({ username: z.string().min(1) });
+const validationSchema = z.object({
+  username: z.string().nonempty("Please enter a username"),
+});
 type FormSchema = z.infer<typeof validationSchema>;
 
 export default function UserForm({}: Props) {
@@ -32,6 +34,7 @@ export default function UserForm({}: Props) {
         }}
       >
         <TextInput
+          name="username"
           onChange={(e) =>
             setFormData({ ...formData, username: e.target.value })
           }
