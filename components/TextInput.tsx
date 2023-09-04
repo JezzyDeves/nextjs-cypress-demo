@@ -2,17 +2,38 @@
 
 import React from "react";
 
-type Props = { name?: string; id?: string };
+type Props = {
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  error?: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+};
 
-export default function TextInput({ name, id }: Props) {
+export default function TextInput({
+  name,
+  id,
+  placeholder,
+  error,
+  onChange,
+}: Props) {
   return (
     <>
-      <input
-        className="p-2 rounded border shadow-inner shadow-gray-500"
-        type="text"
-        name={name}
-        id={id}
-      />
+      <div className="inline-flex flex-col basis-12">
+        <input
+          className="p-2 rounded border shadow-inner shadow-gray-500"
+          type="text"
+          onChange={onChange}
+          name={name}
+          id={id}
+          placeholder={placeholder}
+        />
+        {error ? (
+          <span className="text-red-500 font-semibold break-words">
+            {error}
+          </span>
+        ) : null}
+      </div>
     </>
   );
 }
